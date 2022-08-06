@@ -1,0 +1,161 @@
+from binance.client import Client
+import config
+import pandas as pd
+import openpyxl
+import pickle
+import os
+import tti
+import matplotlib
+
+"""import time"""
+
+"importo time para decirle al codigo que espere 1 segundo antes de ejecutar la secuencia de lineas de codigo que tenemos dentro del while"
+
+client = Client(config.api_key, config.secret_key)
+
+"""se supone que dentro de depth tenemos una lista tanto de las compras como de las ventas"""
+
+"""bids y ask son estructuras, dentro tenemos lo siguiente:"""
+"""los bids son las compras y los asks son las ventas"""
+
+"""deberia quedarme con el precio de la ultima operacion a mercado, devuelve un array de estructuras"""
+"""id de la transaccion,price al cual se ha transferido, qty cantidad de bitcoin que se ha transferido, quoteQty el dinero en dolares que se ha transferido, isBuyerMaker significa que es es una order a mercado """
+
+"""print(depth)"""
+"""print(depth['bids'])"""
+"""print(depth['asks'])"""
+
+"""----------------------------------------------------------------------------------------------------"""
+
+"""
+VID 2
+
+En el siguiente metodo Voy a hacer un ciclo para ejecutar cada segundo y que me diga el precio del bitcoin"""
+
+"""while 0 == 0:
+    depth = client.get_recent_trades(symbol='BTCUSDT', limit=3)
+    -con depth[0] vamos a tomar la primer información que nos devuelve el depth, osea toda la primer linea de información con sus campos
+    vamos a setear el precio de la ultima operacion como el precio de la moneda
+    el parametro limit de client.get_recent_trades(limit), es un parametro opcional para pedir el numero de transacciones que me trae, ver en documentacion python-binance-api
+    precio = depth[0]['price']
+    print (precio)
+    time.sleep(1)"""
+
+"""----------------------------------------------------------------------------------------------------"""
+
+"""
+VID 3
+este metodo siguiente lo voy a usar en el caso de que quiera crear un robot para mirar muchisimas criptomonedas a la vez,
+voy a poder ver todos los pares que hay y nos da el precio mas alto del bid, osea el precio mas alto de las compras y la cantidad de la propia compra
+osea nos devuelve la ultima linea de los rojos y a primera linea de los verdes (en advance trade de binance) de toda la lista de pares de cripto
+que hay en binance
+de manera informativa iria a recent trades
+pero si quiero saber cuando entrara para comprar, tengo que agarrar el primero de todos los rojos usando este metodo de la api client.get_orderbook_tickers() """
+
+"""depth = client.get_orderbook_tickers()
+print(depth)"""
+
+"""----------------------------------------------------------------------------------------------------"""
+
+"""
+VID 4
+en lo siguiente voy a agarrar los datos de velas, porque lo que hicimos fue agarrar los precios de un par dado
+ahora buscando un par especifico (ejemplo: BTCUSDT) voy a agarrar los historicos de las velas del ultimo día,
+ejemplo de velas de 5 minutos
+"""
+
+""" 
+voy a usar la funcion siguiente client.get_historical_klines(), para representan los maximos y minimos. 
+kline no son las velas japonesas pero esta funcion sirve para darme la información. 
+Velas japonesas es la forma de representarlo en un grafico nosotros acá vamos a agarrar los datos en columnas,
+ osea filas y columnas, por lo que se representan los maximos y minimos
+
+En lo siguiente le pido las velas del ultimo día en un intervalo de 5 minutos ---> asi lo hacia en el video pero lo pasé a 1 año
+
+ """
+
+candles = client.get_historical_klines("BTCUSDT", client.KLINE_INTERVAL_1HOUR, "3 weeks ago UTC")
+
+"""lo siguiente lo voy a hacer con la libreria pandas que se usa para formatear el dato que me devuelve 
+lo voy a convertir en un data frame, un dataframe (es un set de datos bien tabulado, ya me lo tabula perfectamente esta libreria,
+le damos los datos y le decimos las columnas que van a ser, estas columnas las conozco por la documentacion de la api binance-python
+la funcion de python llama a la de binance y me devuelve esos datos, 
+volumen de la moneda quote - quote asset volume, osea cuando pongo BTCUSDT, esto te da el volumen en USDT
+ """
+
+df = pd.DataFrame(candles,
+                  columns=['Datetime', 'Open', 'High', 'Low', 'Close', 'Volume', 'Close time', 'Quote asset volume',
+                           'Number of trades', 'Taker buy base asset volume', 'Taker buy quote asset volume', 'Ignore'])
+
+"""print(df)
+imprimiendo esto , veo los datos crudos sin formatear los nombres de columas
+"""
+
+"""Lo que voy a hacer ahora es formatearlo
+columna por columna poniendo el tipo que tiene
+los que son fechas lo convierto en datetime"""
+
+"""para mi este es así:
+
+df['Open Time'] = pd.DatetimeIndex(pd.to_datetime(df['Open Time'], unit='ms'))
+
+pero el tipo los hace así
+
+df['Datetime'] = pd.DatetimeIndex(pd.to_datetime(df['Close time'], unit='ms'))
+
+porque la fecha de date time toma del close time, osea del cierre de vela
+
+"""
+df['Datetime'] = pd.DatetimeIndex(pd.to_datetime(df['Close time'], unit='ms'))
+df['Open'] = df['Open'].astype('float')
+df['High'] = df['High'].astype('float')
+df['Low'] = df['Low'].astype('float')
+df['Close'] = df['Close'].astype('float')
+df['Volume'] = df['Volume'].astype('float')
+df['Close time'] = pd.DatetimeIndex(pd.to_datetime(df['Close time'], unit='ms'))
+df['Quote asset volume'] = df['Quote asset volume'].astype('float')
+df['Number of trades'] = df['Number of trades'].astype('float')
+df['Taker buy base asset volume'] = df['Taker buy base asset volume'].astype('float')
+df['Taker buy quote asset volume'] = df['Taker buy quote asset volume'].astype('float')
+df['Ignore'] = df['Ignore'].astype('float')
+
+"""----------------------------------------------------------------------------------------------------"""
+
+"""ahora voy a usar la siguiente libreria
+    https://www.trading-technical-indicators.org/
+    como instalarla desde el IDE: pip install -U tti
+ """
+
+"""
+El tti necesita una columna indice, va a referenciar que cada vela subindice es la fecha de cierre, 
+eso hago en la linea siguiente
+"""
+
+df = df.set_index('Datetime')
+
+"""limpiando el DF"""
+
+df2 = df.drop(['Open', 'High', 'Low', 'Quote asset volume', 'Taker buy base asset volume', 'Taker buy quote asset volume', 'Ignore', 'Close time'], axis=1)
+
+df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
+
+
+
+"""asi obtengo una columna de un dataframe
+
+print(df.__getitem__(['Close']))
+
+"""
+
+
+#listafechasprecio = df['Close time'].tolist()
+#listaPreciosanio = df['Close'].tolist()
+
+
+
+
+
+
+
+
+
