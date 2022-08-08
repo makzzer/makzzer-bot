@@ -34,17 +34,7 @@ df['Taker buy base asset volume'] = df['Taker buy base asset volume'].astype('fl
 df['Taker buy quote asset volume'] = df['Taker buy quote asset volume'].astype('float')
 df['Ignore'] = df['Ignore'].astype('float')
 
-"""----------------------------------------------------------------------------------------------------"""
 
-"""ahora voy a usar la siguiente libreria
-    https://www.trading-technical-indicators.org/
-    como instalarla desde el IDE: pip install -U tti
- """
-
-"""
-El tti necesita una columna indice, va a referenciar que cada vela subindice es la fecha de cierre, 
-eso hago en la linea siguiente
-"""
 #Aca le doy una columna indice al dataframe para usar el TTI, pero en este ejemplo mio no uso TTI
 df = df.set_index('Datetime')
 
