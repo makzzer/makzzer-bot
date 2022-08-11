@@ -46,8 +46,10 @@ df2 = df.drop(['Open', 'High', 'Low', 'Quote asset volume', 'Taker buy base asse
 df2['Variación'] = funciones.calculoVariacion(df2['Close'])
 
 #Acá exporto el DataFrame a Excel (Descomentar el que no corresponda)
-#PC DELL XEROX df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
-#PC Gamer df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
+#PC DELL XEROX
+#df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
+#PC Gamer makzO
+#df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
 
 df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
 
