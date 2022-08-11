@@ -12,7 +12,6 @@ def calculoVariacion(lista):
     return lista_variacion;
     
 
-
 #lista = [100,300,750,1000]
 #resultado = [0,200,450,250]
 #print(calculoVariacion(lista))
