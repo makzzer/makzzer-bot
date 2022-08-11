@@ -1,18 +1,26 @@
 import math as ma
 
-lista = [100,200,150]
+#acá calculo la formula de la variación
+def variacion (actual,anterior):
+    #return (actual-anterior);
+    return ma.log(actual/anterior)
 
-def variacion (ultimo,anterior):
-    return (ultimo-anterior);
-    #return ma.log(ultimo/anterior)
-
-#codiguito
-lista_variacion = [0]
-for i in range (1,len(lista)-1,1):
-    lista_variacion.append(variacion(lista[i+1],lista[i]))
-
+#acá recorro la lista y devuelvo la lista de variaciónes con el formato correcto
+def calculoVariacion(lista):
+    lista_variacion = [0]
+    for i in range (1,len(lista),1):
+        lista_variacion.append(variacion(lista[i],lista[i-1]))
+    #print (lista_variacion)    
+    return lista_variacion;
     
-print(lista_variacion)
+
+
+#lista = [100,300,750,1000]
+#resultado = [0,200,450,250]
+#print(calculoVariacion(lista))
+
+
+
 
 
 
