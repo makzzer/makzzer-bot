@@ -1,9 +1,12 @@
+from fileinput import close
 from binance.client import Client
 import config
 import pandas as pd
 import openpyxl
 import pickle
 import os
+import funciones
+
 
 #Conexión a Cuenta Binance
 client = Client(config.api_key, config.secret_key)
@@ -33,14 +36,16 @@ df['Ignore'] = df['Ignore'].astype('float')
 
 
 #Aca le doy una columna indice al dataframe para usar el TTI, pero en este ejemplo mio no uso TTI
-df = df.set_index('Datetime')
+#df = df.set_index('Datetime')
 
 """limpiando el DF"""
 #Acá limpiamos el DataFrame para preparar la salida que necesitamos analizar con Facu
 df2 = df.drop(['Open', 'High', 'Low', 'Quote asset volume', 'Taker buy base asset volume', 'Taker buy quote asset volume', 'Ignore', 'Close time'], axis=1)
 
 #Acá exporto el DataFrame a Excel
-df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
+#df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
 
 
+listaCierre = df2['Close'].tolist()
 
+print(funciones.calculoVariacion(listaCierre))

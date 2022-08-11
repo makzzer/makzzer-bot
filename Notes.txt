@@ -1,6 +1,7 @@
 CODIGO UTIL
 
 
+Escribir en un archivo tipo txt los valores de dos listas, despues esto lo hicimos con pandas y dataframe
 """
 file = open("C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx", "w")
 for valor_a, valor_b in zip(listafechasprecio, listaPreciosanio):
@@ -9,7 +10,7 @@ file.close()
 """
 
 
-lista en reversa python
+Recorrer lista en reversa python
 
 #Creo la nueva lista de variación con el primer elemento vacío
 #lista_variacion = [0]
