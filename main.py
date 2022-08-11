@@ -4,9 +4,6 @@ import pandas as pd
 import openpyxl
 import pickle
 import os
-import tti
-import matplotlib
-
 
 #Conexión a Cuenta Binance
 client = Client(config.api_key, config.secret_key)
@@ -43,13 +40,7 @@ df = df.set_index('Datetime')
 df2 = df.drop(['Open', 'High', 'Low', 'Quote asset volume', 'Taker buy base asset volume', 'Taker buy quote asset volume', 'Ignore', 'Close time'], axis=1)
 
 #Acá exporto el DataFrame a Excel
-df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
-
-
-
-
-
-
+df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
 
 
 

@@ -9,6 +9,14 @@ file.close()
 """
 
 
+lista en reversa python
+
+#Creo la nueva lista de variación con el primer elemento vacío
+#lista_variacion = [0]
+#for i in range (len(lista)-1, 0, -1):
+    #print(variacion(lista[i]+lista[i-1]))
+ #   lista_variacion_pivote.append(variacion(lista[i],lista[i-1]))
+
 
 -----------------------------------------------------
 
