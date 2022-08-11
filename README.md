@@ -23,3 +23,9 @@ pip install pandas
 * openpyxl
 
 pip install openpyxl
+
+
+
+#Acá exporto el DataFrame a Excel (Descomentar el que no corresponda según la maquina que este ejecutando)
+#PC DELL XEROX df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
+#PC Gamer df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
