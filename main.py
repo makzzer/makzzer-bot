@@ -42,10 +42,12 @@ df['Ignore'] = df['Ignore'].astype('float')
 #Acá limpiamos el DataFrame para preparar la salida que necesitamos analizar con Facu
 df2 = df.drop(['Open', 'High', 'Low', 'Quote asset volume', 'Taker buy base asset volume', 'Taker buy quote asset volume', 'Ignore', 'Close time'], axis=1)
 
-#Acá exporto el DataFrame a Excel
-#df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
+#Calculo de la variación y agregar Columna de DataFrame
+df2['Variación'] = funciones.calculoVariacion(df2['Close'])
 
+#Acá exporto el DataFrame a Excel (Descomentar el que no corresponda)
+#PC DELL XEROX df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
+#PC Gamer df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
 
-listaCierre = df2['Close'].tolist()
+df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
 
-print(funciones.calculoVariacion(listaCierre))
