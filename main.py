@@ -36,18 +36,22 @@ df['Ignore'] = df['Ignore'].astype('float')
 
 
 #Aca le doy una columna indice al dataframe para usar el TTI, pero en este ejemplo mio no uso TTI
+#Esto lo descomenté y me empezó a salir solo la columna que quiero del DF sin el datetime en formato raro
 #df = df.set_index('Datetime')
 
 """limpiando el DF"""
 #Acá limpiamos el DataFrame para preparar la salida que necesitamos analizar con Facu
 df2 = df.drop(['Open', 'High', 'Low', 'Quote asset volume', 'Taker buy base asset volume', 'Taker buy quote asset volume', 'Ignore', 'Close time'], axis=1)
 
-#Calculo de la variación y agregar Columna de DataFrame
+"""Calculo de la variación"""
+#Tambien agrega la Columna de DataFrame
 df2['Variación'] = funciones.calculoVariacion(df2['Close'])
 
 #Acá exporto el DataFrame a Excel (Descomentar el que no corresponda)
+
 #PC DELL XEROX
 #df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
+
 #PC Gamer makzO
 df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
 
