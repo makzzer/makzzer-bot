@@ -14,16 +14,12 @@ def calculoVariacion(lista):
     
 #Volatilidad de 6 periodos - volatilidad de x periodos
 
-def desviacionEstandar (lista):
-    return statistics.stdev(lista)
-
-
+#FormulaDesviacion estandar
 def desviacionEstandar (lista,valorMultiplicar):
     return statistics.stdev(lista)*ma.sqrt(valorMultiplicar);
 
 def sumarArray (lista):
     return sum(lista);
-
 
 #metodo para armar la sublista que quiero recorrer en cada iteración
 def armarSublista(lista,indice):
