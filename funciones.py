@@ -5,7 +5,7 @@ import statistics
 def variacion (actual,anterior):
     return ma.log(actual/anterior)
 
-#acá recorro la lista y devuelvo la lista de variaciónes con el formato correcto
+#acá recorro la lista  vuelvo la lista de variaciónes con el formato correcto
 def calculoVariacion(lista):
     lista_variacion = [0]
     for i in range (1,len(lista),1):
@@ -17,36 +17,41 @@ def calculoVariacion(lista):
 def desviacionEstandar (lista):
     return statistics.stdev(lista)
 
-#metodo para armar la sublista que quiero recorrer en cada iteración
-def armarSublista(lista,inicio,fin):
-    sublista = []
-    while(i < len(lista)):
-        list.append(lista[i:i+n])
-        #i += n
-    return list; 
 
+def desviacionEstandar (lista,valorMultiplicar):
+    return statistics.stdev(lista)*ma.sqrt(valorMultiplicar);
+
+def sumarArray (lista):
+    return sum(lista);
+
+
+#metodo para armar la sublista que quiero recorrer en cada iteración
+def armarSublista(lista,indice):
+    sublista = []
+    for i in range (indice-1,indice-indice-1, -1):
+        sublista.append(lista[i])
+    return sublista; 
+
+#OJO ESTE METODO NO PUEDE TENER UN VALOR MENOR A 3
 #metodo de volatilidad
 def volatilidadxPeriodos (lista, indice):
+    #poner los ceros
     lista_volatilidad = []
-    for i in range (indice,len(lista),1):
+    for i in range (0,indice-1,1):
         lista_volatilidad.append(0)
+    for j in range (indice-1,len(lista),1):
+        lista_volatilidad.append(desviacionEstandar(armarSublista(lista,j),338))
     return lista_volatilidad;
-
-
-
-
 
 
 
 lista = [100,300,750,1000,2000,3000,5000]
 
-print(volatilidadxPeriodos(lista,5))
+#print(armarSublista(lista,4))
 
-#resultado = [0,200,450,250]
-#print(calculoVariacion(lista))
+#print (volatilidadxPeriodos(lista,3))
 
-
-
+#print (sumarArray(lista))
 
 
 

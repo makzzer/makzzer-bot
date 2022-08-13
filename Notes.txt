@@ -19,6 +19,17 @@ Recorrer lista en reversa python
  #   lista_variacion_pivote.append(variacion(lista[i],lista[i-1]))
 
 
+
+#metodo para armar la sublista que quiero recorrer en cada iteración
+def armarSublista(lista,inicio,fin):
+    sublista = []
+    while(i < len(lista)):
+        list.append(lista[i:i+n])
+        #i += n
+    return list;
+
+
+
 -----------------------------------------------------
 
 ANOTACIONES ANTES DE BORRAR EL CODIGO DEL VIDEO Y DEJAR EL QUE YO MODIFIQUÉ
