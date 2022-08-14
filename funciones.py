@@ -43,7 +43,7 @@ def volatilidadxPeriodos (lista, indice):
 
 
 lista = [2,4,6,8,10,3,1,22]
-print(volatilidadxPeriodos(lista,6))
+#print(volatilidadxPeriodos(lista,6))
 
 
 #print(armarSublista(lista,4))
