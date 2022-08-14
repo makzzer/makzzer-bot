@@ -63,3 +63,8 @@ df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
 #PC Facu
 #df2.to_excel('C:/Users/Facu/Desktop/Python/BTCUSDT_3W.xlsx')
 
+
+#Acá voy a hacer una V2 de exportar el DF a excel usando openpyxl
+
+
+
