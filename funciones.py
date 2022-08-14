@@ -15,9 +15,11 @@ def calculoVariacion(lista):
 #Volatilidad de 6 periodos - volatilidad de x periodos
 
 #FormulaDesviacion estandar
+#Esto es (desviació estandar ( ultimos 6 datos de la variacion) * raiz (336))
 def desviacionEstandar (lista,valorMultiplicar):
     return statistics.stdev(lista)*ma.sqrt(valorMultiplicar);
 
+#metodo para probar el recorrido correcto de la desviacion estandar con un metodo sencillo de suma de array
 def sumarArray (lista):
     return sum(lista);
 
@@ -36,7 +38,7 @@ def volatilidadxPeriodos (lista, indice):
     for i in range (0,indice-1,1):
         lista_volatilidad.append(0)
     for j in range (indice,len(lista)+1,1):
-        lista_volatilidad.append(desviacionEstandar(armarSublista(lista,j,indice),338))
+        lista_volatilidad.append(desviacionEstandar(armarSublista(lista,j,indice),336))
         #lista_volatilidad.append(sumarArray(armarSublista(lista,j,indice)))
     return lista_volatilidad;
 
