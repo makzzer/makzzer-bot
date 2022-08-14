@@ -49,7 +49,9 @@ df2['Variacion'] = funciones.calculoVariacion(df2['Close'])
 
 
 #Calculo de Volatilidad por X periodos
-df2['VolatilidadXPeriodos'] = funciones.volatilidadxPeriodos(df2['Variacion'],6)
+df2['VolatilidadXPeriodos'] = funciones.volatilidadxPeriodos(df2['Variacion'].tolist(),6)
+
+#print(df2['Variacion'][0])
 
 
 #Acá exporto el DataFrame a Excel (Descomentar el que no corresponda)

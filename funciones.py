@@ -37,17 +37,16 @@ def volatilidadxPeriodos (lista, indice):
     lista_volatilidad = []
     for i in range (0,indice-1,1):
         lista_volatilidad.append(0)
-    for j in range (indice-1,len(lista)+1,1):
+    for j in range (indice,len(lista)+1,1):
         lista_volatilidad.append(desviacionEstandar(armarSublista(lista,j,indice),336))
         #lista_volatilidad.append(sumarArray(armarSublista(lista,j,indice)))
     return lista_volatilidad;
 
 
 
+lista = [2,4,6,8,10,20,3,1,22]
 
-lista = [2,4,6,8,10,3,1,22]
-#print(volatilidadxPeriodos(lista,6))
-
+#print(volatilidadxPeriodos(lista,7))
 
 #print(armarSublista(lista,4))
 
