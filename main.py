@@ -55,10 +55,10 @@ df2['VolatilidadXPeriodos'] = funciones.volatilidadxPeriodos(df2['Variacion'],6)
 #Acá exporto el DataFrame a Excel (Descomentar el que no corresponda)
 
 #PC DELL XEROX
-df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
+#df2.to_excel('C:/Users/Friday/Desktop/BTC/BTCUSDT_3W.xlsx')
 
 #PC Gamer makzO
-#df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
+df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
 
 #PC Facu
 #df2.to_excel('C:/Users/Facu/Desktop/Python/BTCUSDT_3W.xlsx')

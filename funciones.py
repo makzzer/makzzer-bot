@@ -22,9 +22,9 @@ def sumarArray (lista):
     return sum(lista);
 
 #metodo para armar la sublista que quiero recorrer en cada iteración
-def armarSublista(lista,indice):
+def armarSublista(lista,numeroActual,indice):
     sublista = []
-    for i in range (indice-1,indice-indice-1, -1):
+    for i in range (numeroActual-1,numeroActual-indice-1,-1):
         sublista.append(lista[i])
     return sublista; 
 
@@ -35,13 +35,16 @@ def volatilidadxPeriodos (lista, indice):
     lista_volatilidad = []
     for i in range (0,indice-1,1):
         lista_volatilidad.append(0)
-    for j in range (indice-1,len(lista),1):
-        lista_volatilidad.append(desviacionEstandar(armarSublista(lista,j),338))
+    for j in range (indice,len(lista)+1,1):
+        lista_volatilidad.append(desviacionEstandar(armarSublista(lista,j,indice),338))
+        #lista_volatilidad.append(sumarArray(armarSublista(lista,j,indice)))
     return lista_volatilidad;
 
 
 
-lista = [100,300,750,1000,2000,3000,5000]
+lista = [2,4,6,8,10,3,1,22]
+print(volatilidadxPeriodos(lista,6))
+
 
 #print(armarSublista(lista,4))
 
