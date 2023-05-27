@@ -49,9 +49,15 @@ df2['Variacion'] = funciones.calculoVariacion(df2['Close'])
 
 
 #Calculo de Volatilidad por X periodos
-df2['VolatilidadXPeriodos'] = funciones.volatilidadxPeriodos(df2['Variacion'],6)
+#df2['VolatilidadXPeriodos'] = funciones.volatilidadxPeriodos(df2['Variacion'],6)
 
-#print(df2['Variacion'][0])
+
+#df2['VolatilidadXPeriodos'] = funciones.volatilidadxPeriodos(df2['Variacion'],6)
+
+
+
+print(df2['Variacion'][0])
+
 
 
 #Acá exporto el DataFrame a Excel (Descomentar el que no corresponda)
@@ -67,6 +73,3 @@ df2.to_excel('C:/Users/makzO/Desktop/facu/BTCUSDT_3W.xlsx')
 
 
 #Acá voy a hacer una V2 de exportar el DF a excel usando openpyxl
-
-
-

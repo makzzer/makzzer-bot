@@ -30,23 +30,39 @@ def armarSublista(lista,numeroActual,indice):
         sublista.append(lista[i])
     return sublista; 
 
+# lista = [10000,2,4,6,8,10,20,3,1,22]
+
 #OJO ESTE METODO NO PUEDE TENER UN VALOR MENOR A 3
 #metodo de volatilidad
+#voy a asumir que la lista tiene siempre al menos 7 periodos
+
 def volatilidadxPeriodos (lista, indice):
-    #poner los ceros
+
+    #creo una lista auxiliar de la lista de variaciones original para no modificarla
+    listaVarAux = lista.copy()
+    #borro el primer elemento porque es un 0 pero de la lista auxiliar
+    listaVarAux.pop(0)
+
+    #creo la lista a retornar y en el primer for le agrego los 0
     lista_volatilidad = []
-    for i in range (0,indice,1):
+    for i in range (0,indice-1,1):
         lista_volatilidad.append(0)
-    for j in range (indice,len(lista)+1,1):
-        lista_volatilidad.append(desviacionEstandar(armarSublista(lista,j,indice),336))
-        #lista_volatilidad.append(sumarArray(armarSublista(lista,j,indice)))
+
+    #acá laburo el armarsublista con el parametro listaVarAux porque es la lista original pero sin el primer elemento
+    for j in range (indice,len(lista),1):
+        #lista_volatilidad.append(desviacionEstandar(armarSublista(listaVarAux,j,indice),336))
+        lista_volatilidad.append(sumarArray(armarSublista(listaVarAux,j,indice)))
     return lista_volatilidad;
 
 
 
-lista = [2,4,6,8,10,20,3,1,22]
+lista = [10000,2,4,6,8,10,20,3,1,22]
 
-#print(volatilidadxPeriodos(lista,7))
+# por 6 tiene que dar, tomando com primero el 20, luego 3,1,22
+# [0, 0, 0, 0, 0, 50, 51, 48,64]
+
+
+#print(volatilidadxPeriodos(lista,6))
 
 #print(armarSublista(lista,4))
 
